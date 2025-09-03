@@ -1,7 +1,7 @@
 /* Seed admin helper: fill your UID in SEED_ADMIN_UIDS */
 (function(){
   const SEED_ADMIN_UIDS = [
-    // "YOUR-FIRST-ADMIN-UID"
+    isR4ZdOhuydUOIwj26qNmOx8U5Y2,
   ];
 
   function log(t){ const el = document.getElementById('out'); if(el) el.textContent = (t||''); console.log(t); }
