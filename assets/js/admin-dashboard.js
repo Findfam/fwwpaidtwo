@@ -1,4 +1,3 @@
-
 /* global firebase, auth, db, functions, uploadFileToStorage, qs, qsa, show, hide, toast */
 (function(){
   // Tab logic
@@ -47,17 +46,19 @@
     }
   });
 
-  // Users (real-time)
+  // ================= USERS =================
   let stopUsers = null;
   function renderUserCard(id, u){
     const plan = u.plan || "free";
-    const admin = u.admin === true; // mirror claim if you store it; otherwise token-based only
+    const admin = u.admin === true; // optional mirror field
     const subscribed = !!u.subscribed;
     return `<div class="card">
       <div class="grid">
         <div class="grid">
           <img class="avatar" src="${u.photoURL || ''}" alt="avatar"/>
-          <div><strong>${u.name || u.email || id}</strong><div class="small">Plan: ${plan}${u.paid ? " (paid)" : ""}</div></div>
+          <div><strong>${u.name || u.email || id}</strong>
+            <div class="small">Plan: ${plan}${u.paid ? " (paid)" : ""}</div>
+          </div>
         </div>
         <div class="nav">
           <button class="btn" data-action="toggle-subscribed" data-uid="${id}" data-val="${(!subscribed)}">${subscribed ? "Unsubscribe" : "Subscribe"}</button>
@@ -81,6 +82,7 @@
     if(!btn) return;
     const uid = btn.getAttribute("data-uid");
     const action = btn.getAttribute("data-action");
+
     if(action === "toggle-subscribed"){
       const to = btn.getAttribute("data-val") === "true";
       try{
@@ -88,7 +90,7 @@
         toast("Subscription status updated.","success");
       }catch(err){ toast(err.message || String(err), "error"); }
     }
-    
+
     if(action === "set-plan"){
       const plan = btn.getAttribute("data-val");
       try{
@@ -96,7 +98,8 @@
         toast("Plan updated to " + plan + ".", "success");
       }catch(err){ toast(err.message || String(err), "error"); }
     }
-if(action === "make-admin"){
+
+    if(action === "make-admin"){
       try{
         const callable = firebase.functions().httpsCallable("setAdmin");
         await callable({ uid });
@@ -105,7 +108,7 @@ if(action === "make-admin"){
     }
   });
 
-  // Posts (real-time for admin list)
+  // ================= POSTS =================
   let stopAdminPosts = null;
   function renderAdminPost(id, p){
     return `<div class="card">
@@ -164,7 +167,7 @@ if(action === "make-admin"){
     }
   });
 
-  // Activity (simple live feed from users & notifications)
+  // ================= ACTIVITY =================
   let stopActivityUsers = null, stopActivityNotifs = null;
   function initActivity(){
     const cont = qs("#activityList");
@@ -186,14 +189,11 @@ if(action === "make-admin"){
         return `<div class="card"><div>${n.title || 'Notification'}</div>
           <div class="small">post: ${n.postId || ''}</div></div>`;
       });
-      // Append below users snapshot (simple merge)
       cont.innerHTML += items.join("");
     });
   }
-})();
 
-
-  // Dating profiles (admin view + delete)
+  // ================= DATING =================
   let stopDating = null;
   function renderDatingAdminCard(id, p){
     const img = p.imageURL ? `<img class="avatar" src="${p.imageURL}" alt="profile"/>` : "";
@@ -219,15 +219,6 @@ if(action === "make-admin"){
     });
   }
 
-  // Hook into admin initialization
-  const _oldInitAfterAdmin = initActivity; // reuse as marker
-  function initAllAdmin(){
-    initUsers(); initAdminPosts(); initActivity(); initDating();
-  }
-
-  // Replace previous call sequence
-  document.addEventListener("DOMContentLoaded", ()=>{}); // no-op
-
   document.addEventListener("click", async (e)=>{
     const btn = e.target.closest("[data-action='delete-dating']");
     if(!btn) return;
@@ -235,9 +226,7 @@ if(action === "make-admin"){
     const path = btn.getAttribute("data-path");
     if(!confirm("Delete this dating profile?")) return;
     try{
-      // Delete Firestore doc
       await db.collection("dating_profiles").doc(id).delete();
-      // Attempt to delete Storage object if path exists (requires rules to allow admin)
       if(path){
         try{
           const ref = firebase.storage().ref().child(path);
@@ -249,3 +238,10 @@ if(action === "make-admin"){
       toast(err.message || String(err), "error");
     }
   });
+
+  // ================= ADMIN INIT =================
+  function initAllAdmin(){
+    initUsers(); initAdminPosts(); initActivity(); initDating();
+  }
+
+})();
