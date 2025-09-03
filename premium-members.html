@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Premium Members</title>
+<link href="assets/css/styles.css" rel="stylesheet"/>
+<!-- Include PayPal SDK with your CLIENT_ID -->
+</head>
+<body>
+<div class="container">
+<header style="margin-bottom:1rem">
+<nav class="nav">
+<a class="btn" href="index.html">Home</a>
+<a class="btn" href="posts.html">Admin Posts</a>
+
+<a class="btn" href="register-premium.html">Premium</a>
+
+<a class="btn" data-logout="" href="#">Logout</a>
+</nav>
+</header>
+<div class="card">
+<div class="nav">
+<span class="badge">Premium Members Area</span>
+<a class="btn" href="index.html">Home</a>
+<a class="btn" data-logout="" href="#">Logout</a>
+</div>
+<h1>Premium Members</h1>
+<p class="small">Access restricted to verified paid members.</p>
+<div class="notice hidden" id="paywall">
+<strong>Almost there:</strong> Complete the $10 payment to unlock your profile form.
+      <div id="paypal-button-container" style="margin-top:1rem;"></div>
+</div>
+<div class="hidden" id="profileBox">
+<div class="notice hidden" id="profileExists">Your profile is already set. You can view it below.</div>
+<form class="grid grid-2" enctype="multipart/form-data" id="profileForm">
+<div>
+<label class="label">Photo</label>
+<input accept="image/*" class="input" id="photo" required="" type="file"/>
+</div>
+<div>
+<label class="label">Full Name</label>
+<input class="input" id="name" required="" type="text"/>
+</div>
+<div>
+<label class="label">WhatsApp Number</label>
+<input class="input" id="whatsapp" placeholder="+256..." required="" type="tel"/>
+</div>
+<div>
+<label class="label">Country</label>
+<input class="input" id="country" required="" type="text"/>
+</div>
+<div class="grid" style="grid-column:1/-1;">
+<label class="label">About / Bio</label>
+<textarea class="input" id="bio" placeholder="Tell members about you..." required="" rows="4"></textarea>
+</div>
+<button class="btn primary" type="submit">Save Profile</button>
+</form>
+<div class="card hidden" id="profileView"></div>
+</div>
+</div>
+</div>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID¤cy=USD"></script>
+<script src="assets/js/premium.js"></script>
+<script src="assets/js/storage.js"></script></body>
+</html>

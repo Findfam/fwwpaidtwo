@@ -1,0 +1,23 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAuthed() { return request.auth != null; }
+    function isVerified() { return isAuthed() && request.auth.token.email_verified == true; }
+    function isAdmin() { return isAuthed() && (request.auth.token.admin == true || exists(/databases/$(database)/documents/admins/$(request.auth.uid))); }
+    function isPremium(uid){ return isAuthed() && (request.auth.token.member == true || get(/databases/$(database)/documents/users/$(uid)).data.plan == 'premium'); }
+
+    // Single profile image per user
+    match /members/{userId}/profile.jpg {
+      allow read: if isVerified() && isPremium(request.auth.uid);
+      allow write: if isVerified() && request.auth.uid == userId && isPremium(userId)
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+      allow delete: if isAdmin() || (isVerified() && request.auth.uid == userId);
+    }
+
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

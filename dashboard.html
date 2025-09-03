@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <style>
+    .container{max-width:860px;margin:0 auto;padding:20px}
+    .card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 8px 24px rgba(0,0,0,.08);margin-bottom:12px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:#0b74d1;color:#fff;border:0;cursor:pointer}
+    .muted{color:#667085}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2 id="hello">Hello</h2>
+      <p class="muted">This is your dashboard. Verified users can access free pages. Paid members can access members-only pages.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn" href="list-of-member.html">Members area</a>
+        <a class="btn" href="posts.html">Admin / posts</a>
+        <button class="btn" data-logout>Log out</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/firebase-config.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async ()=>{
+      if(!window.__initFirebase || !window.__initFirebase()) { /* init in common.js */ }
+      firebase.auth().onAuthStateChanged(async (u)=>{
+        if(!u){ location.href='login.html'; return; }
+        await u.getIdToken(true);
+        if(!u.emailVerified){
+          alert('Please verify your email first. We sent a link when you signed up.');
+          firebase.auth().signOut();
+          location.href='login.html';
+          return;
+        }
+        document.getElementById('hello').textContent = 'Hello, ' + (u.displayName || u.email);
+      });
+    });
+  </script>
+</body>
+</html>

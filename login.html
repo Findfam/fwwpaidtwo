@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Sign in</title>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <style>
+    .container{max-width:480px;margin:0 auto;padding:20px}
+    .card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+    .label{font-weight:600;margin-top:10px;display:block}
+    .input{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;margin-top:6px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:#0b74d1;color:#fff;border:0;cursor:pointer}
+    .muted{color:#667085}
+    .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+    a{color:#0b74d1}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Welcome back</h2>
+      <p class="muted">Sign in to continue.</p>
+      <div id="auth-message-box"></div>
+      <form id="login-form">
+        <label class="label">Email</label>
+        <input class="input" type="email" required/>
+        <label class="label">Password</label>
+        <input class="input" type="password" required/>
+        <div class="row">
+          <a href="forgot-password.html">Forgot password?</a>
+          <button class="btn" type="submit">Sign in</button>
+        </div>
+      </form>
+    </div>
+    <p class="muted" style="text-align:center;margin-top:10px">No account? <a href="register-premium.html">Create one</a></p>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/firebase-config.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

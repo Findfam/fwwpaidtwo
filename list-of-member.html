@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>List of Member</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    .hidden{display:none}
+    .container{max-width:1040px;margin:0 auto;padding:16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+    .card{background:#fff;border-radius:14px;padding:14px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+    .avatar{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px;border:1px solid #eee}
+    .input, textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:#0b74d1;color:#fff;text-decoration:none;border:0;cursor:pointer}
+    nav a{margin-right:8px}
+    .note{color:#555}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header style="margin-bottom:1rem">
+    <nav class="nav">
+      <a class="btn" style="background:#eee;color:#333" href="index.html">Home</a>
+      <a class="btn" style="background:#eee;color:#333" href="posts.html">Posts</a>
+      <button class="btn" id="logoutBtn">Logout</button>
+    </nav>
+  </header>
+
+  <div id="gate" class="card">
+    <h2>Members Area</h2>
+    <p class="note">Checking your access…</p>
+  </div>
+
+  <div id="memberApp" class="hidden">
+    <div class="card">
+      <h3>My Profile</h3>
+      <form id="profileForm">
+        <div style="display:grid;grid-template-columns:160px 1fr;gap:16px;align-items:start">
+          <div>
+            <img id="preview" class="avatar" src="images/placeholder.png" alt="Your photo">
+            <input type="file" id="photo" accept="image/*" />
+          </div>
+          <div>
+            <label>Full Name</label>
+            <input class="input" type="text" id="fullName" placeholder="First Last" required />
+            <label style="margin-top:8px">Bio</label>
+            <textarea class="input" id="bio" rows="4" placeholder="Tell members about you…" required></textarea>
+            <label style="margin-top:8px">Names of lost person(s)</label>
+            <textarea class="input" id="lostNames" rows="3" placeholder="Enter names, separated by commas" required></textarea>
+            <div style="margin-top:10px">
+              <button class="btn" type="submit">Save</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <p id="saveMsg" class="note"></p>
+    </div>
+
+    <div class="card">
+      <h3>All Members</h3>
+      <div id="membersList" class="grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase SDK v8 -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+<!-- App Common + Config -->
+<script src="assets/js/common.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/storage.js"></script>
+
+<!-- Members app -->
+<script src="assets/js/members.js"></script>
+</body>
+</html>

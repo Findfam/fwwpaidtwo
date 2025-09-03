@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register Premium</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    .hidden{display:none}
+    .container{max-width:980px;margin:0 auto;padding:16px}
+    .card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.06);margin-bottom:16px}
+    .label{font-weight:600;margin-top:10px;display:block}
+    .input, select, textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;margin-top:6px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:#0b74d1;color:#fff;text-decoration:none;border:0;cursor:pointer}
+    .btn[disabled]{opacity:.6;cursor:not-allowed}
+    .note{color:#555;font-size:.95rem}
+    nav a{margin-right:8px}
+    #paypal-zone{border:1px dashed #ccc;border-radius:12px;padding:16px}
+    .ok{color:green} .err{color:#c00}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header style="margin-bottom:1rem">
+    <nav class="nav">
+      <a class="btn" style="background:#eee;color:#333" href="index.html">Home</a>
+      <a class="btn" style="background:#eee;color:#333" href="posts.html">Posts</a>
+    </nav>
+  </header>
+
+  <div class="card">
+    <h2>Premium Registration ($10 one-time)</h2>
+    <p class="note">Step 1: Create your account. We'll send a verification email. <br/>Step 2: Verify your email, then pay securely via PayPal. <br/>After payment, you'll be redirected to the members-only area.</p>
+    <div id="auth-message-box"></div>
+    <form id="signup-form">
+      <label class="label">Email</label>
+      <input class="input" type="email" id="signup-email" autocomplete="email" required />
+
+      <label class="label">Password</label>
+      <input class="input" type="password" id="signup-password" minlength="6" autocomplete="new-password" required />
+
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+        <div>
+          <label class="label">First Name</label>
+          <input class="input" type="text" id="signup-firstName" required />
+        </div>
+        <div>
+          <label class="label">Last Name</label>
+          <input class="input" type="text" id="signup-lastName" required />
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+        <div>
+          <label class="label">WhatsApp</label>
+          <input class="input" type="text" id="signup-whatsapp" placeholder="+256..." required />
+        </div>
+        <div>
+          <label class="label">Country</label>
+          <input class="input" type="text" id="signup-country" placeholder="Uganda" required />
+        </div>
+      </div>
+
+      <div style="margin-top:12px">
+        <button class="btn" type="submit" id="signup-btn">Create Account</button>
+      </div>
+    </form>
+
+    <div id="verify-step" class="hidden">
+      <p class="note"><span class="ok">✓ Account created.</span> We sent a verification link to <b id="v-email"></b>. Please verify your email, then click the button below.</p>
+      <button class="btn" id="refresh-btn">I verified my email</button>
+      <p id="verify-error" class="err"></p>
+    </div>
+
+    <div id="paypal-step" class="hidden">
+      <h3>Step 2: Pay with PayPal</h3>
+      <p class="note">Pay <b>$10</b> to activate your premium membership. After payment is confirmed, you'll be redirected to the members-only page.</p>
+      <div id="paypal-zone">
+        <div id="paypal-button-container"></div>
+        <p class="note">Having trouble? Try reloading the page after verifying your email.</p>
+      </div>
+      <p id="paypal-error" class="err"></p>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase SDK v8 -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-functions.js"></script>
+
+<!-- App Common + Config -->
+<script src="assets/js/common.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+
+<!-- PayPal SDK (client id placeholder) -->
+<script src="https://www.paypal.com/sdk/js?client-id=AQKhStHv4Uf8SdGlU2uGuqriwVLu0BQflzv9NVjWbu9AaADuxcHpClTM6TNNlfD44SFohBltpwyLcttb&currency=USD"></script>
+
+<!-- Premium signup + PayPal binder -->
+<script src="assets/js/premium.js"></script>
+</body>
+</html>

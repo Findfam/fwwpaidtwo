@@ -1,0 +1,62 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAuthed() { return request.auth != null; }
+    function isVerified() { return isAuthed() && request.auth.token.email_verified == true; }
+    function isAdmin() { 
+      return isAuthed() && (
+        request.auth.token.admin == true ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+    function isPremium(uid){
+      return isAuthed() && (
+        request.auth.token.member == true || // legacy custom claim
+        get(/databases/$(database)/documents/users/$(uid)).data.plan == 'premium'
+      );
+    }
+
+    // Admins list: only seed admins can write themselves; admins can read
+    match /admins/{uid} {
+      allow read: if isAuthed();
+      // Only allow a user to create or delete their own admin doc
+      allow create, update, delete: if isAuthed() && request.auth.uid == uid;
+    }
+
+    // USERS: users maintain basic profile. Only admins can change 'plan' field.
+    match /users/{userId} {
+      allow read: if isVerified();
+      allow create: if isAuthed() && request.auth.uid == userId && (
+        !('plan' in request.resource.data) || request.resource.data.plan == 'free'
+      );
+      allow update: if isAuthed() && request.auth.uid == userId &&
+        (request.resource.data.plan == resource.data.plan);
+      allow update, delete: if isAdmin();
+    }
+
+    // MEMBERS (premium only)
+    match /members/{userId} {
+      allow read: if isVerified() && isPremium(request.auth.uid);
+      // owner can write only if premium
+      allow create, update: if isAuthed() && request.auth.uid == userId && isPremium(userId);
+      allow delete: if isAdmin() || (isAuthed() && request.auth.uid == userId);
+    }
+
+    // POSTS (public read, admin write)
+    match /posts/{postId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // NOTIFICATIONS (read own)
+    match /notifications/{docId} {
+      allow read: if isAuthed();
+      allow write: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Admin Posts</title>
+<link href="assets/css/styles.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+<header style="margin-bottom:1rem">
+<nav class="nav">
+<a class="btn" href="index.html">Home</a>
+<a class="btn" href="posts.html">Admin Posts</a>
+
+<a class="btn" href="register-premium.html">Premium</a>
+
+<a class="btn" data-logout="" href="#">Logout</a>
+</nav>
+</header>
+<div class="card">
+<div class="nav">
+<span class="badge">Admin</span>
+<a class="btn" href="index.html">Home</a>
+<a class="btn" data-logout="" href="#">Logout</a>
+</div>
+<h1>Posts</h1>
+<p class="small">Only admins can add posts (image + paragraph). All subscribed users are notified.</p>
+<form class="grid" enctype="multipart/form-data" id="postForm">
+<div>
+<label class="label">Image</label>
+<input accept="image/*" class="input" id="postImage" required="" type="file"/>
+</div>
+<div>
+<label class="label">Paragraph</label>
+<textarea class="input" id="postText" required="" rows="4"></textarea>
+</div>
+<button class="btn primary" type="submit">Publish</button>
+</form>
+<hr/>
+<!-- Admin Dashboard (visible only to admins) -->
+<section class="card hidden" id="adminDashboard">
+<div class="nav">
+<a class="btn badge" data-tab="users" href="#">Users</a>
+<a class="btn badge" data-tab="posts" href="#">Posts</a>
+<a class="btn badge" data-tab="activity" href="#">Activity</a>
+<a class="btn badge" data-tab="dating" href="#">Dating</a>
+</div>
+<div class="grid hidden" id="tabUsers">
+<div class="small">Real-time list of users. Toggle <strong>admin</strong> and <strong>subscribed</strong>.</div>
+<div class="grid" id="usersTable"></div>
+</div>
+<div class="grid hidden" id="tabPosts">
+<div class="small">Edit or delete posts.</div>
+<div class="grid" id="adminPostsList"></div>
+</div>
+<div class="grid hidden" id="tabActivity">
+<div class="small">Recent sign-ups and payments.</div>
+<div class="grid" id="activityList"></div>
+</div>
+<div class="grid hidden" id="tabDating">
+<div class="small">Admin only: manage dating profiles.</div>
+<div class="grid" id="datingAdminList"></div>
+</div>
+</section>
+<!-- Public feed (visible to everyone) -->
+<h2>Latest Posts</h2>
+<div class="grid" id="publicPosts"></div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-functions.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/posts.js"></script>
+<script src="assets/js/storage.js"></script>
+<script src="assets/js/admin-dashboard.js"></script></body>
+</html>

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Find My Family World-Wide - reconnect with missing loved ones" />
+  <title>Find My Family World-Wide</title>
+  <link rel="icon" href="favicon.ico">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#0b74d1;
+      --card:#ffffff;
+      --muted:#667085;
+      --gold:#ffd700;
+      --glass: rgba(255,255,255,0.6);
+    }
+    /* IMPORTANT: keep the background color unchanged as requested */
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background-color: skyblue; /* preserved */
+      color:#0b2540;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Page container */
+    .wrap{
+      max-width:1100px;
+      margin:32px auto;
+      padding:28px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* Header */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:18px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
+    }
+    .brand .logo{
+      width:64px;height:64px;border-radius:12px;object-fit:cover;border:2px solid rgba(0,0,0,0.06);
+      box-shadow:0 6px 18px rgba(11,39,64,0.08);
+      background:linear-gradient(135deg,var(--gold),#ffb84d);
+      display:inline-block;
+    }
+    .brand h1{font-size:1.25rem;margin:0;line-height:1}
+    .brand p{margin:0;font-size:0.8rem;color:var(--muted)}
+
+    /* Top nav */
+    nav{
+      display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    }
+    .nav-link{padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;background:transparent;color:#033e6b}
+    .nav-cta{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none}
+
+    /* Hero */
+    .hero{
+      display:grid;grid-template-columns:1fr 360px;gap:22px;align-items:center;margin-top:16px;
+    }
+    .hero-card{background:var(--glass);border-radius:14px;padding:22px;box-shadow:0 12px 30px rgba(3,60,110,0.08);}
+    .hero-card h2{margin:0 0 8px 0;font-size:1.6rem;color:#01294a}
+    .hero-card p{margin:0 0 16px 0;color:var(--muted)}
+    .search-row{display:flex;gap:8px}
+    .search-row input{flex:1;padding:12px 14px;border-radius:10px;border:1px solid rgba(2,40,70,0.08)}
+    .search-row button{padding:12px 18px;border-radius:10px;border:none;background:var(--accent);color:white;font-weight:700}
+
+    /* Cards */
+    .services{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:22px;
+    }
+    .card{
+      background:var(--card);border-radius:12px;padding:18px;box-shadow:0 8px 24px rgba(11,39,64,0.06);border:1px solid rgba(2,40,70,0.03);
+      display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;
+    }
+    .card img{width:84px;height:84px;object-fit:cover;border-radius:10px}
+    .card h3{margin:0;font-size:1.1rem}
+    .card p{color:var(--muted);margin:0}
+    .card a{margin-top:auto;padding:10px 14px;border-radius:10px;text-decoration:none;background:var(--gold);color:#123;display:inline-block;font-weight:700}
+
+    /* Utility buttons row (countries) */
+    .countries{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .chip{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.5);border:1px solid rgba(0,0,0,0.06);text-decoration:none;color:#013049}
+
+    /* Footer */
+    footer{margin-top:28px;padding:20px;border-radius:12px;background:linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02));text-align:center}
+    footer p{margin:8px 0;color:#042b44}
+    footer .small{font-size:0.85rem;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .brand h1{font-size:1rem}
+      .wrap{padding:18px}
+    }
+
+    /* small accessibility tweaks */
+    a:focus, button:focus, input:focus{outline:3px solid rgba(11,116,209,0.15);outline-offset:2px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="index.html">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Find My Family World-Wide</h1>
+          <p>Reconnect with missing loved ones • F.F.W.W</p>
+        </div>
+      </a>
+
+      <nav>
+        <a class="nav-link" href="About.html">About</a>
+        <a class="nav-link" href="Peoples.html">Peoples</a>
+        <a class="nav-link" href="Services.html">Services</a>
+        <a class="nav-link" href="Contact Us.html">Contact</a>
+        <a class="nav-cta" href="register-premium.html">Register Premium</a>
+        
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h2>Find your missing family & friends — worldwide</h2>
+        <p>We help people reconnect across continents — whether you lost contact because of migration, conflict or life changes. Start a search or browse our lists.</p>
+
+        <div class="search-row" role="search" aria-label="Search for person">
+          <input type="search" placeholder="Search by name, city or country" aria-label="Search input">
+          <button type="button">Search</button>
+        </div>
+
+        <div class="countries" aria-hidden="false">
+          <a class="chip" href="Peoples.html">Africa</a>
+          <a class="chip" href="Peoples.html">Asia</a>
+          <a class="chip" href="Peoples.html">Europe</a>
+          <a class="chip" href="Peoples.html">North America</a>
+          <a class="chip" href="Peoples.html">South America</a>
+          <a class="chip" href="Peoples.html">Australia</a>
+          <a class="chip" href="Peoples.html">Unknown</a>
+        </div>
+
+      </div>
+
+      <aside>
+        <div class="card">
+          <img src="./images/ffww logo.jpg" alt="FFWW logo">
+          <h3>Join the community</h3>
+          <p>Register free or upgrade for priority support and dedicated help finding people.</p>
+          
+        </div>
+
+        <div style="height:16px"></div>
+
+        <div class="card">
+          <img src="./images/map population.jpg" alt="Map image">
+          <h3>Reconnection services</h3>
+          <p>We provide assisted searches, verification and support for families separated by crises.</p>
+          <a href="Services.html">Learn more</a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="services" aria-label="Key services">
+      <div class="card">
+        <img src="./images/partners.png" alt="Partners">
+        <h3>Find a partner</h3>
+        <p>Looking for life partner opportunities? We connect people safely across borders.</p>
+        
+      </div>
+
+      <div class="card">
+        <img src="./images/web dev.jpg" alt="Web development">
+        <h3>Website & SEO</h3>
+        <p>We build modern websites — showcase your cause or start a portal.</p>
+        <a href="https://wa.link/054bj4" target="_blank" rel="noopener noreferrer">Let's talk</a>
+      </div>
+
+      <div class="card">
+        <img src="./images/find my family population.jpg" alt="Find my family">
+        <h3>Reunite families</h3>
+        <p>Search tools and community resources to help you locate missing loved ones.</p>
+        <a href="Peoples.html">Search</a>
+      </div>
+
+      <div class="card">
+        <img src="./images/world map.jpg" alt="World map">
+        <h3>Guides & Videos</h3>
+        <p>Watch our short guides on how to search, verify and reconnect safely.</p>
+        <a href="Videos.html">Watch</a>
+      </div>
+    </section>
+
+    <div style="margin-top:20px;display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/PKpkw8Nn-FM" title="YouTube video player" frameborder="0" allowfullscreen style="max-width:100%;border-radius:10px;box-shadow:0 8px 20px rgba(2,40,70,0.06)"></iframe>
+      <img src="./images/World map.jpg" alt="World map" style="max-width:360px;width:100%;height:auto;border-radius:12px;box-shadow:0 8px 20px rgba(2,40,70,0.06)">
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Find My Family. Founder: Seth Iradukunda.</p>
+      <p class="small">All Rights Reserved. <a href="Privacy policy.html">Privacy Policy</a> • <a href="Contact Us.html">Contact</a> • <a href="About.html">About</a></p>
+    </footer>
+  </div>
+</body>
+</html>

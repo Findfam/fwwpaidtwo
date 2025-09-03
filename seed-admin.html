@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Seed Admin</title>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <style>.container{max-width:680px;margin:0 auto;padding:20px}.card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 8px 24px rgba(0,0,0,.08)}.input{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;margin-top:6px}.btn{padding:10px 14px;border-radius:10px;background:#0b74d1;color:#fff;border:0;cursor:pointer}.note{color:#667085}</style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Seed an Admin</h2>
+      <p class="note">Sign in, then click the button to mark yourself as admin in the <code>admins</code> collection. Only works for UIDs listed in <code>assets/js/seed-admin.js</code>.</p>
+      <div id="out" class="note"></div>
+      <button id="seed" class="btn">Make me admin</button>
+    </div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/firebase-config.js"></script>
+  <script src="assets/js/seed-admin.js"></script>
+</body>
+</html>
