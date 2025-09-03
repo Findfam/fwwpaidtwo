@@ -1,7 +1,7 @@
 (function(){
   const SEED_ADMIN_UIDS = [
-    isR4ZdOhuydUOIwj26qNmOx8U5Y2,
-    pef9pQro8ZZT7f76ksbkhuCdbtL2
+    "isR4ZdOhuydUOIwj26qNmOx8U5Y2"
+    "pef9pQro8ZZT7f76ksbkhuCdbtL2"
   ];
 
   function log(msg){
