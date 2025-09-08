@@ -66,5 +66,11 @@
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
   </url>
+  <url>
+    <loc>https://getmyfamily.com/dating.html</loc>
+    <lastmod>2025-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
 </urlset>
 
