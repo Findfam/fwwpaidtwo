@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registered Members</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#11162b;
+      --ink:#e9efff;
+      --muted:#a9b3d6;
+      --brand:#6aa1ff;
+      --ring:#1f2a4d;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html,body { height: 100%; }
+    body{
+      margin:0; background: radial-gradient(1200px 800px at 15% 10%, #121837 0%, var(--bg) 40%),
+                                 radial-gradient(1000px 700px at 85% 20%, #0f1430 0%, var(--bg) 50%),
+                                 linear-gradient(180deg, #0a0f1e 0%, var(--bg) 100%);
+      color:var(--ink); font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, "Noto Sans", sans-serif;
+    }
+
+    .nav{
+      display:flex; flex-wrap:wrap; justify-content:center; gap:20px; padding:16px 20px; background:#0a0f1e; border-bottom:1px solid #1a2142; position:sticky; top:0; z-index:1000;
+    }
+    .nav a{
+      color:var(--ink); text-decoration:none; font-weight:600; font-size:15px; padding:6px 10px; border-radius:8px; transition: background .2s, color .2s;
+    }
+    .nav a:hover{ background:#1f2a4d; color:var(--brand); }
+
+    .container{ max-width:1200px; margin: 0 auto; padding: 48px 20px 80px; }
+
+    .page-title{
+      display:flex; align-items:center; gap:16px; margin: 10px 0 28px;
+    }
+    .page-badge{ padding:6px 12px; border-radius:999px; background: linear-gradient(90deg, #1f2a4d, #192449);
+                 color:#c6d4ff; font-weight:600; font-size:12px; letter-spacing:.08em; text-transform:uppercase; }
+    h1{ margin:0; font-size: clamp(28px, 4vw, 40px); line-height:1.15; font-weight:800; }
+    .subtitle{ color: var(--muted); margin-top: 6px; }
+
+    .toolbar{ margin: 26px 0 24px; display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+    .search{ position:relative; flex:1 1 280px; }
+    .search input{
+      width:100%; background: #0f1530; color: var(--ink);
+      border: 1px solid #1a2142; border-radius: 999px; padding: 12px 44px 12px 16px; outline:none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.03), 0 0 0 2px transparent; transition: box-shadow .25s, border-color .25s;
+    }
+    .search input:focus{ border-color:#24306a; box-shadow: 0 0 0 4px rgba(106,161,255,.15); }
+    .search .icon{ position:absolute; right:12px; top:50%; transform:translateY(-50%); opacity:.75; pointer-events:none; }
+
+    .grid{ display:grid; grid-template-columns: 1fr; gap:14px; }
+
+    .card{
+      display:grid; grid-template-columns: 120px 1fr; gap:18px; align-items:center;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)) , var(--card);
+      border: 1px solid #1a2142; border-radius: var(--radius); padding:14px; box-shadow: var(--shadow);
+      transition: transform .20s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+    .card:hover{ transform: translateY(-2px); border-color:#2a3668; box-shadow: 0 12px 34px rgba(0,0,0,.45); }
+
+    .avatar{ width:100%; aspect-ratio:1/1; overflow:hidden; border-radius: 14px; border:1px solid #27305f;
+             background: #0c1127; position:relative; }
+    .avatar img{ width:100%; height:100%; object-fit:cover; display:block; filter: saturate(1.05) contrast(1.02); }
+
+    .info{ display:flex; flex-direction:column; gap:6px; min-width:0; }
+    .row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+    .name{ font-weight:800; font-size: 18px; letter-spacing:.2px; }
+    .meta{ color: var(--muted); font-size: 14px; }
+    .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-top:2px; }
+    .tag{ background:#0e1430; border:1px solid #242c56; color:#c9d6ff; padding:6px 10px; border-radius:999px; font-size:12px; }
+    .bio{ margin-top: 4px; color:#d5defa; opacity:.92; }
+
+    .pill{ margin-left:auto; background: linear-gradient(90deg, #20306b, #2a3e85); border:1px solid #2e3c7a; color:white;
+           border-radius:999px; padding:6px 12px; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+
+    footer{ margin-top:36px; color:var(--muted); text-align:center; font-size:14px; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="About.html">About</a>
+    <a href="About.html">About</a>
+    <a href="Services.html">Services</a>
+    <a href="register-premium">Register here</a>
+    <a href="Peoples.html">Peoples</a>
+    <a href="Contact Us.html">Contact Us</a>
+    <a href="#">Get life partner</a>
+    <a href="Videos.html">Videos guide</a>
+  </nav>
+
+  <div class="container">
+    <div class="page-title">
+      <span class="page-badge">Members</span>
+      <div>
+        <h1>Registered Members</h1>
+        <div class="subtitle">A clean, responsive directory with 20 photo holders. Image on the left, description on the right.</div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="search">
+        <input id="memberSearch" type="text" placeholder="Search members..." />
+        <span class="icon">🔍</span>
+      </div>
+      <div id="countButton" class="pill">20 Members</div>
+    </div>
+
+    <div class="grid" id="memberGrid">
+      <!-- Repeat 20 member cards -->
+      
+      <!-- Example Card 1 -->
+      <div class="card" data-name="John Doe" data-role="Developer" data-tags="JavaScript,React">
+        <div class="avatar"><img src="https://via.placeholder.com/120" alt="Photo of John Doe"></div>
+        <div class="info">
+          <div class="row">
+            <div class="name">John Doe</div>
+            <div class="meta">Web Developer</div>
+          </div>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag">React</span></div>
+          <div class="bio">Passionate about coding and building web applications.</div>
+        </div>
+      </div>
+
+      <!-- Example Card 2 -->
+      <div class="card" data-name="Jane Smith" data-role="Designer" data-tags="UI/UX,Branding">
+        <div class="avatar"><img src="https://via.placeholder.com/120" alt="Photo of Jane Smith"></div>
+        <div class="info">
+          <div class="row">
+            <div class="name">Jane Smith</div>
+            <div class="meta">UI/UX Designer</div>
+          </div>
+          <div class="tags"><span class="tag">UI/UX</span><span class="tag">Branding</span></div>
+          <div class="bio">Creative designer with an eye for detail and user-friendly experiences.</div>
+        </div>
+      </div>
+
+      <!-- Add 18 more placeholder cards -->
+      
+      <!-- Auto-generate 18 placeholders -->
+      <script>
+        const grid = document.currentScript.parentElement;
+        for (let i = 3; i <= 20; i++) {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.dataset.name = `Member ${i}`;
+          card.dataset.role = 'Member';
+          card.dataset.tags = 'Placeholder';
+          card.innerHTML = `
+            <div class="avatar"><img src="https://via.placeholder.com/120" alt="Photo of Member ${i}"></div>
+            <div class="info">
+              <div class="row">
+                <div class="name">Member ${i}</div>
+                <div class="meta">Role ${i}</div>
+              </div>
+              <div class="tags"><span class="tag">Placeholder</span></div>
+              <div class="bio">This is a placeholder bio for Member ${i}.</div>
+            </div>`;
+          grid.appendChild(card);
+        }
+      </script>
+    </div>
+
+    <footer>© 2025 Registered Members Directory</footer>
+  </div>
+
+  <script>
+    const input = document.getElementById('memberSearch');
+    const gridEl = document.getElementById('memberGrid');
+    const cards = Array.from(gridEl.querySelectorAll('.card'));
+    const counter = document.getElementById('countButton');
+
+    function filter(){
+      const q = input.value.toLowerCase().trim();
+      let visible = 0;
+      for (const card of cards){
+        const hay = (card.dataset.name + ' ' + card.dataset.role + ' ' + card.dataset.tags).toLowerCase();
+        const show = !q || hay.includes(q);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      }
+      counter.textContent = visible + (visible === 1 ? ' Member' : ' Members');
+    }
+
+    input.addEventListener('input', filter);
+  </script>
+</body>
+</html>
