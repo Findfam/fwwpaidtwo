@@ -101,7 +101,7 @@
             const res = await callable({ orderId: data.orderID });
             // Force refresh ID token to receive custom claim
             await firebase.auth().currentUser.getIdToken(true);
-            window.location.href = "list-of-member.html";
+            window.location.href = "registered-members.html";
           }catch(err){
             document.getElementById("paypal-error").textContent = (err.message||String(err));
           }
